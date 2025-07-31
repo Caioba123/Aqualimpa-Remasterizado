@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carrinho - Loja Online</title>
+  <style>
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+    }
+
+    /* Cabeçalho */
+    header {
+      background-color: #1e90ff;
+      color: white;
+      padding: 25px 20px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(30,144,255,0.6);
+      user-select: none;
+    }
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+    }
+
+    /* Navegação */
+    nav {
+      background-color: #222;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      padding: 16px 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      user-select: none;
+      font-weight: 600;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 10px 18px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+    nav a:hover,
+    nav a.active {
+      background-color: #1e90ff;
+      cursor: pointer;
+    }
+
+    /* Container principal */
+    main {
+      max-width: 1100px;
+      margin: 40px auto 80px;
+      background: white;
+      border-radius: 15px;
+      padding: 40px 50px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    /* Formulário para adicionar produtos */
+    form#addProductForm {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+    }
+    form#addProductForm > * {
+      flex: 1 1 180px;
+      min-width: 150px;
+    }
+    form#addProductForm label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #1e90ff;
+      user-select: none;
+    }
+    form#addProductForm input[type="text"],
+    form#addProductForm input[type="number"] {
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+      font-family: inherit;
+    }
+    form#addProductForm input[type="text"]:focus,
+    form#addProductForm input[type="number"]:focus {
+      border-color: #1e90ff;
+      outline: none;
+      box-shadow: 0 0 8px rgba(30,144,255,0.3);
+    }
+    form#addProductForm button {
+      background-color: #1e90ff;
+      color: white;
+      padding: 15px 25px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      flex: 1 1 120px;
+      min-width: 120px;
+    }
+    form#addProductForm button:hover {
+      background-color: #0b75d1;
+    }
+
+    /* Tabela do carrinho */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1rem;
+      user-select: none;
+    }
+    thead tr {
+      background-color: #1e90ff;
+      color: white;
+      text-align: center;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 14px 10px;
+      vertical-align: middle;
+    }
+    tbody tr:nth-child(even) {
+      background-color: #f7f9fc;
+    }
+    tbody tr:hover {
+      background-color: #e6f0ff;
+    }
+
+    /* Célula para nome do produto com alinhamento à esquerda */
+    td.nome-produto {
+      text-align: left;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    /* Input quantidade */
+    input.qty-input {
+      width: 70px;
+      font-size: 1rem;
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1.8px solid #ccc;
+      text-align: center;
+      transition: border-color 0.3s ease;
+    }
+    input.qty-input:focus {
+      border-color: #1e90ff;
+      outline: none;
+      box-shadow: 0 0 8px rgba(30,144,255,0.3);
+    }
+
+    /* Botão remover */
+    button.btn-remove {
+      background-color: #ff4d4d;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    button.btn-remove:hover {
+      background-color: #cc0000;
+    }
+
+    /* Total geral */
+    .total-container {
+      text-align: right;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1e90ff;
+      user-select: none;
+      margin-top: 20px;
+    }
+
+    /* Botão finalizar compra */
+    button.btn-finalizar {
+      background-color: #1e90ff;
+      color: white;
+      padding: 18px 28px;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+      align-self: flex-end;
+      margin-top: 10px;
+      transition: background-color 0.3s ease;
+    }
+    button.btn-finalizar:hover {
+      background-color: #0b75d1;
+    }
+
+    /* Mensagem de carrinho vazio */
+    #msg-vazio {
+      font-size: 1.5rem;
+      color: #888;
+      text-align: center;
+      padding: 60px 0;
+      user-select: none;
+    }
+
+    /* Responsividade */
+    @media (max-width: 720px) {
+      main {
+        padding: 30px 25px;
+      }
+      form#addProductForm {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      form#addProductForm > * {
+        flex: none;
+        width: 100%;
+      }
+      input.qty-input {
+        width: 100%;
+      }
+      button.btn-finalizar {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Seu Carrinho</h1>
+  </header>
+  <main>
+    <!-- Formulário para adicionar produtos -->
+    <form id="addProductForm" aria-label="Adicionar produto ao carrinho">
+      <div>
+        <label for="produtoNome">Nome do Produto</label>
+        <input type="text" id="produtoNome" placeholder="Ex: Chuteira" required autocomplete="off" />
+      </div>
+      <div>
+        <label for="produtoPreco">Preço (R$)</label>
+        <input type="number" id="produtoPreco" placeholder="Ex: 200.00" step="0.01" min="0" required />
+      </div>
+      <div>
+        <button type="submit" aria-label="Adicionar produto ao carrinho">Adicionar Produto</button>
+      </div>
+    </form>
+
+    <!-- Tabela do carrinho -->
+    <section aria-label="Produtos adicionados no carrinho">
+      <table aria-describedby="msg-vazio" id="carrinhoTable" role="table" aria-live="polite" aria-relevant="all" aria-rowcount="0">
+        <thead>
+          <tr>
+            <th scope="col">Produto</th>
+            <th scope="col">Quantidade</th>
+            <th scope="col">Preço Unitário</th>
+            <th scope="col">Subtotal</th>
+            <th scope="col">Remover</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Linhas de produtos adicionados -->
+        </tbody>
+      </table>
+      <p id="msg-vazio" role="alert">Seu carrinho está vazio.</p>
+    </section>
+
+    <!-- Total -->
+    <div class="total-container" aria-live="polite" aria-atomic="true">
+      Total Geral: R$ <span id="totalGeral">0,00</span>
+    </div>
+
+    <!-- Finalizar compra -->
+    <button class="btn-finalizar" aria-label="Finalizar compra" id="finalizarCompraBtn" disabled>Finalizar Compra</button>
+  </main>
+
+  <footer>
+    <p>© 2025 Loja Online. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    // Referências DOM
+    const form = document.getElementById('addProductForm');
+    const nomeInput = document.getElementById('produtoNome');
+    const precoInput = document.getElementById('produtoPreco');
+    const tbody = document.querySelector('#carrinhoTable tbody');
+    const msgVazio = document.getElementById('msg-vazio');
+    const totalGeralElem = document.getElementById('totalGeral');
+    const finalizarBtn = document.getElementById('finalizarCompraBtn');
+
+    // Estado do carrinho (array de objetos {nome, preco, quantidade})
+    let carrinho = [];
+
+    // Função para formatar preço em reais
+    function formatarPreco(valor) {
+      return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    // Atualiza exibição do carrinho
+    function atualizarTabela() {
+      tbody.innerHTML = ''; // limpa tabela
+      if (carrinho.length === 0) {
+        msgVazio.style.display = 'block';
+        finalizarBtn.disabled = true;
+        atualizarTotal();
+        return;
+      } else {
+        msgVazio.style.display = 'none';
+        finalizarBtn.disabled = false;
+      }
+
+      carrinho.forEach((item, index) => {
+        const tr = document.createElement('tr');
+
+        // Produto (nome)
+        const tdNome = document.createElement('td');
+        tdNome.textContent = item.nome;
+        tdNome.className = 'nome-produto';
+        tr.appendChild(tdNome);
+
+        // Quantidade (input)
+        const tdQtd = document.createElement('td');
+        const inputQtd = document.createElement('input');
+        inputQtd.type = 'number';
+        inputQtd.min = '1';
+        inputQtd.value = item.quantidade;
+        inputQtd.className = 'qty-input';
+        inputQtd.setAttribute('aria-label', `Quantidade do produto ${item.nome}`);
+        inputQtd.addEventListener('change', (e) => {
+          let val = parseInt(e.target.value);
+          if (isNaN(val) || val < 1) {
+            val = 1;
+            e.target.value = val;
+          }
+          carrinho[index].quantidade = val;
+          atualizarTabela();
+        });
+        tdQtd.appendChild(inputQtd);
+        tr.appendChild(tdQtd);
+
+        // Preço unitário
+        const tdPreco = document.createElement('td');
+        tdPreco.textContent = formatarPreco(item.preco);
+        tr.appendChild(tdPreco);
+
+        // Subtotal = preco * quantidade
+        const tdSubtotal = document.createElement('td');
+        tdSubtotal.textContent = formatarPreco(item.preco * item.quantidade);
+        tr.appendChild(tdSubtotal);
+
+        // Botão remover
+        const tdRemover = document.createElement('td');
+        const btnRemover = document.createElement('button');
+        btnRemover.className = 'btn-remove';
+        btnRemover.textContent = 'Remover';
+        btnRemover.setAttribute('aria-label', `Remover produto ${item.nome}`);
+        btnRemover.addEventListener('click', () => {
+          carrinho.splice(index, 1);
+          atualizarTabela();
+        });
+        tdRemover.appendChild(btnRemover);
+        tr.appendChild(tdRemover);
+
+        tbody.appendChild(tr);
+      });
+
+      atualizarTotal();
+    }
+
+    // Atualiza o total geral exibido
+    function atualizarTotal() {
+      let total = carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0);
+      totalGeralElem.textContent = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    // Evento submit do formulário para adicionar produto
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const nome = nomeInput.value.trim();
+      const preco = parseFloat(precoInput.value);
+
+      // Validações básicas
+      if (!nome) {
+        alert('Por favor, insira o nome do produto.');
+        nomeInput.focus();
+        return;
+      }
+      if (isNaN(preco) || preco <= 0) {
+        alert('Por favor, insira um preço válido maior que zero.');
+        precoInput.focus();
+        return;
+      }
+
+      // Verifica se o produto já existe (mesmo nome)
+      const produtoExistenteIndex = carrinho.findIndex(item => item.nome.toLowerCase() === nome.toLowerCase());
+      if (produtoExistenteIndex > -1) {
+        // Se existe, apenas incrementa quantidade em 1
+        carrinho[produtoExistenteIndex].quantidade++;
+      } else {
+        // Se não, adiciona novo produto com quantidade 1
+        carrinho.push({ nome, preco, quantidade: 1 });
+      }
+
+      atualizarTabela();
+
+      // Limpa inputs
+      nomeInput.value = '';
+      precoInput.value = '';
+      nomeInput.focus();
+    });
+
+    // Evento clique finalizar compra
+    finalizarBtn.addEventListener('click', () => {
+      if (carrinho.length === 0) {
+        alert('Seu carrinho está vazio.');
+        return;
+      }
+      // Simula finalização (pode ser substituído por lógica real)
+      alert(`Compra finalizada!\nTotal: ${totalGeralElem.textContent}\nObrigado pela preferência.`);
+      carrinho = [];
+      atualizarTabela();
+    });
+
+    // Inicializa tabela vazia
+    atualizarTabela();
+  </script>
+</body>
+</html>
