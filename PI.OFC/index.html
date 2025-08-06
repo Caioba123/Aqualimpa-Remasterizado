@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaLimpa - Site Oficial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="js/main.js"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+              <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center overflow-hidden">
+            <img src="img_logos/Logo Aqua Limpa.png" alt="Logo AquaLimpa" class="w-6 h-6">
+            </div>
+            <span class="logo-text text-2xl font-bold text-blue-600">Aqua<span class="text-green-500">Limpa</span></span>
+            </div>
+
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="pages/novocliente.html" class="nav-link text-gray-700 font-medium hover:text-blue-600 transition">Novo Cliente</a>
+                <a href="pages/produtos.html" class="nav-link text-gray-700 font-medium hover:text-blue-600 transition">Nossos Produtos</a>
+                <a href="pages/faleconosco.html" class="nav-link text-gray-700 font-medium hover:text-blue-600 transition">Fale Conosco</a>
+                <a href="pages/noticias.html" class="nav-link text-gray-700 font-medium hover:text-blue-600 transition">Notícias</a>
+            </nav>
+            
+            <button class="md:hidden text-gray-700 focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+        <!-- Hero Section -->
+   <section class="relative py-20 overflow-hidden">
+    <!-- Vídeo de fundo -->
+   <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
+    <source src="video/Vídeo_de_Cachoeira_Gerado.mp4" type="video/mp4">
+</video>
+
+    <!-- Overlay para escurecer o vídeo -->
+    <div class="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
+
+    <!-- Conteúdo principal -->
+    <div class="relative z-20 container mx-auto px-4 flex flex-col md:flex-row items-center text-white">
+        <div class="md:w-1/2 mb-10 md:mb-0">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                Transformando Água em <span class="text-blue-300">Oportunidade</span>
+            </h1>
+            <p class="text-lg mb-8">
+                Soluções inovadoras para reutilização de água que preservam o meio ambiente e reduzem custos.
+            </p>
+            <div class="flex space-x-4">
+                <a href="#about" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition shadow-lg">
+                    Conheça Nosso Projeto
+                </a>
+                <a href="pages/faleconosco.html" class="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-6 py-3 rounded-lg font-medium transition">
+                    Fale Conosco
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Nossa Jornada Pela Água</h2>
+                <div class="w-20 h-1 bg-green-500 mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Equipe trabalhando em projeto de sustentabilidade" class="rounded-lg shadow-lg w-full">
+                </div>
+                <div class="md:w-1/2">
+                    <p class="text-lg text-gray-600 mb-6">
+                        Somos um grupo apaixonado por sustentabilidade, que acredita no poder da reutilização da água para transformar o mundo. Nossa missão começou com um pequeno projeto universitário e hoje impacta comunidades inteiras com soluções inteligentes, econômicas e ecológicas.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8">
+                        Combinamos tecnologia avançada com práticas sustentáveis para criar sistemas de reutilização de água que atendem desde residências até grandes indústrias, sempre com foco na preservação desse recurso tão valioso.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-blue-50 p-4 rounded-lg flex items-center">
+                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <img src="img_html/Inovação.png" alt="">
+                                <i class="fas fa-lightbulb text-blue-600"></i>
+                            </div>
+                            <span class="font-medium text-gray-700">Inovação</span>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg flex items-center">
+                            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                                <img src="img_html/Preservação.png" alt="">
+                                <i class="fas fa-leaf text-green-600"></i>
+                            </div>
+                            <span class="font-medium text-gray-700">Preservação</span>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg flex items-center">
+                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <img src="img_html/Responsabilidade.png" alt="">
+                                <i class="fas fa-users text-blue-600"></i>
+                            </div>
+                            <span class="font-medium text-gray-700">Responsabilidade</span>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg flex items-center">
+                            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                                <img src="img_html/Eficiencia.png" alt="">
+                                <i class="fas fa-chart-line text-green-600"></i>
+                            </div>
+                            <span class="font-medium text-gray-700">Eficiência</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Quem Está Por Trás Dessa Ideia?</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Nossa equipe multidisciplinar combina expertise em engenharia, biologia, tecnologia e sustentabilidade.</p>
+                <div class="w-20 h-1 bg-blue-500 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <!-- Team Member 1 -->
+                <div class="team-member bg-white rounded-xl shadow-md p-6 text-center transition duration-300">
+                    <div class="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-4 border-blue-100">
+                        <img src="img/Luiz Henrique.jpg" alt="Luiz Henrique" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">Luiz Henrique</h3>
+                    <p class="text-blue-600 font-medium mb-2">CEO e Fundador</p>
+                    <p class="text-gray-600 text-sm">Desenvolveu as páginas, trabalhou no banco de dados, idealizou o design geral e exerceu a função de coordenador do grupo.</p>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="team-member bg-white rounded-xl shadow-md p-6 text-center transition duration-300">
+                    <div class="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-4 border-blue-100">
+                        <img src="img/Caio Müller.jpg" alt="Caio Muller" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">Caio Müller</h3>
+                    <p class="text-blue-600 font-medium mb-2">Full-Stack</p>
+                    <p class="text-gray-600 text-sm">Trabalhou ajudando na interface do figma, na codificação em HTML e no desenvolvimento do front-end e back-end do site.</p>
+                </div>
+                
+                <!-- Team Member 3 -->
+                <div class="team-member bg-white rounded-xl shadow-md p-6 text-center transition duration-300">
+                    <div class="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-4 border-blue-100">
+                        <img src="img/Pedro Ribeiro.jpg" alt="Pedro Ribeiro" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">Pedro Ribeiro</h3>
+                    <p class="text-blue-600 font-medium mb-2">Full-Stack</p>
+                    <p class="text-gray-600 text-sm">Trabalhou no banco de dados e contribui para o design das páginas.</p>
+                </div>
+                
+                <!-- Team Member 4 -->
+                <div class="team-member bg-white rounded-xl shadow-md p-6 text-center transition duration-300">
+                    <div class="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-4 border-blue-100">
+                        <img src="img/Pedro Vinícius.jpg" alt="Pedro Vinícius" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">Pedro Vinícius</h3>
+                    <p class="text-blue-600 font-medium mb-2">Front-End</p>
+                    <p class="text-gray-600 text-sm">Desenvolveu e estilizou todas as paginas, trabalhou no banco de dados, colaborou com o design geral.</p>
+                </div>
+                
+                <!-- Team Member 5 -->
+                <div class="team-member bg-white rounded-xl shadow-md p-6 text-center transition duration-300">
+                    <div class="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-4 border-blue-100">
+                        <img src="img/Marcos Dencker.jpg" alt="Marcos Dencker" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">Marcos Dencker</h3>
+                    <p class="text-blue-600 font-medium mb-2">Designer</p>
+                    <p class="text-gray-600 text-sm">Desenvolveu a prototipagem e fez o designer geral.</p>
+                </div>
+                
+                <!-- Team Member 6 -->
+                <div class="team-member bg-white rounded-xl shadow-md p-6 text-center transition duration-300">
+                    <div class="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-4 border-blue-100">
+                        <img src="img/Caio César.jpg" alt="Caio César" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">Caio César</h3>
+                    <p class="text-blue-600 font-medium mb-2">T-Shaped</p>
+                    <p class="text-gray-600 text-sm">Desenvolveu e estilizou as páginas,Trabalhou com código HTML e colaborou com o design geral.</p>
+                </div>
+                
+                <!-- Team Member 7 -->
+                <div class="team-member bg-white rounded-xl shadow-md p-6 text-center transition duration-300">
+                    <div class="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-4 border-blue-100">
+                        <img src="img/Airton Samuel.jpg" alt="Airton Samuel" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">Airton Samuel</h3>
+                    <p class="text-blue-600 font-medium mb-2">Back-End</p>
+                    <p class="text-gray-600 text-sm">Desenvolveu a página de formulario, trabalhou no banco de dados, idealizou o design geral  e desenvolvimento e do back-end do site.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation Section -->
+    <section id="navigation" class="py-20 bg-gradient-to-r from-blue-500 to-green-500 text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Descubra Mais</h2>
+                <p class="text-lg max-w-2xl mx-auto">Explore nosso projeto e descubra como podemos ajudar você a economizar água e contribuir com o meio ambiente.</p>
+                <div class="w-20 h-1 bg-white mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- New Client -->
+                <a id="new-client" href="pages/novocliente.html" class="bg-white bg-opacity-10 hover:bg-opacity-20 rounded-xl p-8 text-center transition duration-300 border border-white border-opacity-20">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                        <img src="img_html/Novo Cliente.png" alt="">
+                        <i class="fas fa-user-plus text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Novo Cliente</h3>
+                    <p class="text-sm opacity-90">Cadastre-se e comece a economizar água hoje mesmo.</p>
+                </a>
+                
+                <!-- Products -->
+                <a id="products" href="pages/produtos.html" class="bg-white bg-opacity-10 hover:bg-opacity-20 rounded-xl p-8 text-center transition duration-300 border border-white border-opacity-20">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                        <img src="img_html/Produtos.png" alt="">
+                        <i class="fas fa-box-open text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Nossos Produtos</h3>
+                    <p class="text-sm opacity-90">Conheça nossos sistemas de reutilização de água.</p>
+                </a>
+                
+                <!-- Contact -->
+                <a id="contact" href="pages/faleconosco.html" class="bg-white bg-opacity-10 hover:bg-opacity-20 rounded-xl p-8 text-center transition duration-300 border border-white border-opacity-20">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                        <img src="img_html/Fale Conosco.png" alt="">
+                        <i class="fas fa-envelope text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Fale Conosco</h3>
+                    <p class="text-sm opacity-90">Tire suas dúvidas ou solicite um orçamento.</p>
+                </a>
+                
+                <!-- News -->
+                <a id="news" href="pages/noticias.html" class="bg-white bg-opacity-10 hover:bg-opacity-20 rounded-xl p-8 text-center transition duration-300 border border-white border-opacity-20">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                        <img src="img_html/Notícias.png" alt="">
+                        <i class="fas fa-newspaper text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Notícias</h3>
+                    <p class="text-sm opacity-90">Fique por dentro das novidades sobre sustentabilidade.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="p-6">
+                    <div class="text-4xl font-bold text-blue-600 mb-2">+85%</div>
+                    <div class="text-gray-600">Redução no consumo</div>
+                </div>
+                <div class="p-6">
+                    <div class="text-4xl font-bold text-green-600 mb-2">1.2M</div>
+                    <div class="text-gray-600">Litros economizados</div>
+                </div>
+                <div class="p-6">
+                    <div class="text-4xl font-bold text-blue-600 mb-2">+500</div>
+                    <div class="text-gray-600">Clientes satisfeitos</div>
+                </div>
+                <div class="p-6">
+                    <div class="text-4xl font-bold text-green-600 mb-2">15</div>
+                    <div class="text-gray-600">Prêmios sustentáveis</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative bg-gray-900 text-white pt-16 pb-8 overflow-hidden">
+        <video autoplay muted loop class="footer-video">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-waterfall-in-forest-2213-large.mp4" type="video/mp4">
+        </video>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-tint text-white"></i>
+                        </div>
+                        <span class="logo-text text-xl font-bold">Aqua<span class="text-green-400">Limpa</span></span>
+                    </div>
+                    <p class="text-gray-300 text-sm">Soluções inovadoras para reutilização de água que preservam o meio ambiente e reduzem custos.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Links Rápidos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition">Início</a></li>
+                        <li><a href="#about" class="text-gray-300 hover:text-white transition">Quem Somos</a></li>
+                        <li><a href="#team" class="text-gray-300 hover:text-white transition">Equipe</a></li>
+                        <li><a href="#products" class="text-gray-300 hover:text-white transition">Produtos</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Contato</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-green-400"></i>📍 Senac Paulista, 123, Pernambuco - PE</li>
+                        <li class="flex items-center"><i class="fas fa-phone-alt mr-2 text-green-400"></i>📞 (11) 98765-4321</li>
+                        <li class="flex items-center"><i class="fas fa-envelope mr-2 text-green-400"></i>✉️ aqualimpa@contato.com</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Redes Sociais</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-700 hover:bg-blue-600 rounded-full flex items-center justify-center transition">
+                            <img src="img_logos/Facebook.png" alt="">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 hover:bg-blue-400 rounded-full flex items-center justify-center transition">
+                            <img src="img_logos/Twitter.png" alt="">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 hover:bg-pink-600 rounded-full flex items-center justify-center transition">
+                            <img src="img_logos/Instagram.png" alt="">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 hover:bg-blue-700 rounded-full flex items-center justify-center transition">
+                            <img src="img_logos/Linkedin.png" alt="">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8 text-center">
+                <p class="text-gray-400 text-sm">© 2025 AquaLimpa | Preservando hoje, para um amanhã mais puro.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

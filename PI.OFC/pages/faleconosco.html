@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contato - AquaLimpa</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f7fc;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+    }
+
+    header {
+      background-color: transparent;
+      padding: 0;
+      text-align: center;
+      user-select: none;
+    }
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #1e90ff;
+      margin: 40px 0 0;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 40px auto 80px;
+      background: white;
+      border-radius: 15px;
+      padding: 40px 50px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      text-align: center;
+      color: #1e90ff;
+      margin-top: 10px;
+    }
+
+    .contato-container {
+      display: flex;
+      gap: 50px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    form {
+      flex: 1 1 460px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+      padding: 12px 14px;
+      font-size: 1rem;
+      border: 1.8px solid #ccc;
+      border-radius: 8px;
+      transition: border-color 0.3s ease;
+      font-family: inherit;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #1e90ff;
+      outline: none;
+      box-shadow: 0 0 8px rgba(30,144,255,0.3);
+    }
+
+    textarea {
+      min-height: 120px;
+    }
+
+    button[type="submit"] {
+      background-color: #1e90ff;
+      color: white;
+      padding: 16px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0b75d1;
+    }
+
+    .info-contato {
+      flex: 1 1 360px;
+      background: #f1faff;
+      border-radius: 15px;
+      padding: 30px 25px;
+      box-shadow: inset 0 0 15px rgba(30,144,255,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .info-bloco h3 {
+      font-size: 1.4rem;
+      color: #1e90ff;
+      font-weight: 700;
+      border-bottom: 2px solid #1e90ff;
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+    }
+
+    .info-item p,
+    .info-item a {
+      font-size: 1rem;
+      color: #444;
+      text-decoration: none;
+    }
+
+    .info-item a:hover {
+      color: #1e90ff;
+    }
+
+    footer {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+
+    /* Chatbot flutuante */
+    #chatbot-suporte {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 999;
+    }
+
+    #abrirChat {
+     width: 60px;
+     height: 60px;
+     border-radius: 50%;
+     background: rgb(91, 102, 255);
+     border: none;
+     padding: 10px; /* ADICIONADO para encolher a imagem */
+     box-shadow: 0 6px 15px rgba(0, 47, 255, 0.15);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+   }
+
+    #abrirChat img {
+     width: 36px;  /* TAMANHO AJUSTADO da imagem interna */
+     height: 36px;
+     object-fit: contain;
+     transition: transform 0.3s ease;
+   }
+
+    #abrirChat img:hover {
+      transform: scale(1.1);
+    }
+
+    #janelaChat {
+      position: absolute;
+      bottom: 70px;
+      right: 0;
+      width: 300px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    #janelaChat.ativo {
+      display: flex;
+    }
+
+    .chat-header {
+      background-color: #1e90ff;
+      color: white;
+      padding: 12px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .chat-mensagens {
+      padding: 15px;
+      height: 180px;
+      overflow-y: auto;
+      background-color: #f9f9f9;
+    }
+
+    .mensagem.bot {
+      background-color: #e1f0ff;
+      padding: 8px 12px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .mensagem.usuario {
+      background-color: #d0ffe2;
+      padding: 8px 12px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      align-self: flex-end;
+    }
+
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #ccc;
+    }
+
+    .chat-input input[type="text"] {
+      flex: 1;
+      border: none;
+      padding: 10px;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .chat-input button {
+      border: none;
+      background-color: #1e90ff;
+      color: rgb(255, 255, 255);
+      padding: 10px 16px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .chat-input button:hover {
+      background-color: #0b75d1;
+    }
+
+    @media (max-width: 950px) {
+      main {
+        padding: 30px;
+      }
+      .contato-container {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Envie sua mensagem</h1>
+    <div class="contato-container">
+      <form action="#" method="POST">
+        <label for="nome">Nome completo</label>
+        <input id="nome" name="nome" type="text" required />
+
+        <label for="email">E-mail</label>
+        <input id="email" name="email" type="email" required />
+
+        <label for="telefone">Telefone</label>
+        <input id="telefone" name="telefone" type="tel" />
+
+        <label for="assunto">Assunto</label>
+        <select id="assunto" name="assunto" required>
+          <option value="">Selecione um assunto</option>
+          <option>Dúvidas</option>
+          <option>Reclamações</option>
+          <option>Elogios</option>
+        </select>
+
+        <label for="mensagem">Mensagem</label>
+        <textarea id="mensagem" name="mensagem" required></textarea>
+
+        <button type="submit">Enviar</button>
+      </form>
+
+      <div class="info-contato">
+        <div class="info-bloco">
+          <h3>Contato</h3>
+          <div class="info-item">
+            <p>📞 <a href="tel:+5581987654321">(81) 98765-4321</a></p>
+          </div>
+          <div class="info-item">
+            <p>✉️ <a href="mailto:aqualimpa@contato.com">aqualimpa@contato.com</a></p>
+          </div>
+          <div class="info-item">
+            <p>📍 Senac Paulista, 123, Pernambuco - PE</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Loja Online - Todos os direitos reservados.
+  </footer>
+
+  <!-- Chatbot -->
+  <div id="chatbot-suporte">
+    <button id="abrirChat" title="Abrir Chatbot">
+      <img src="../img_logos/ChatBot.png" alt="Abrir Chatbot" />
+    </button>
+    <div id="janelaChat">
+      <div class="chat-header">Suporte</div>
+      <div class="chat-mensagens">
+        <div class="mensagem bot">Olá! Eu sou o assistente virtual do AquaLimpa! </div>
+      </div>
+      <div class="chat-input">
+        <input type="text" id="entradaMensagem" placeholder="Digite sua mensagem..." />
+        <button id="enviarMensagem">Enviar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const abrirChat = document.getElementById("abrirChat");
+    const janelaChat = document.getElementById("janelaChat");
+    const entradaMensagem = document.getElementById("entradaMensagem");
+    const enviarMensagem = document.getElementById("enviarMensagem");
+    const chatMensagens = document.querySelector(".chat-mensagens");
+
+    abrirChat.addEventListener("click", () => {
+      janelaChat.classList.toggle("ativo");
+    });
+
+    enviarMensagem.addEventListener("click", () => {
+      const mensagemUsuario = entradaMensagem.value.trim();
+      if (mensagemUsuario) {
+        const novaMensagem = document.createElement("div");
+        novaMensagem.classList.add("mensagem", "usuario");
+        novaMensagem.textContent = mensagemUsuario;
+        chatMensagens.appendChild(novaMensagem);
+        entradaMensagem.value = "";
+        chatMensagens.scrollTop = chatMensagens.scrollHeight;
+      }
+    });
+  </script>
+
+</body>
+</html>
