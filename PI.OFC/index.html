@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="js/main.js"></script>
 </head>
+
 <body class="bg-gray-50">
+
     <!-- Header -->
     <header class="sticky top-0 z-50 bg-white shadow-md">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -25,10 +27,10 @@
 
 
             <nav class="hidden md:flex space-x-8">
-                <a href="../PI.OFC/pages/novo-cliente.html" class="nav-link text-gray-700 font-medium hover:text-blue-600 transition">Novo Cliente</a>
-                <a href="../PI.OFC/pages/produtos.html" class="nav-link text-gray-700 font-medium hover:text-blue-600 transition">Nossos Produtos</a>
-                <a href="../PI.OFC/pages/fale-conosco.html" class="nav-link text-gray-700 font-medium hover:text-blue-600 transition">Fale Conosco</a>
-                <a href="../PI.OFC/pages/noticias.html" class="nav-link text-gray-700 font-medium hover:text-blue-600 transition">Notícias</a>
+                <a href="pages/novo-cliente.html" class="nav-link text-gray-700 font-medium hover:text-blue-600 transition">Novo Cliente</a>
+                <a href="pages/produtos.html" class="nav-link text-gray-700 font-medium hover:text-blue-600 transition">Nossos Produtos</a>
+                <a href="pages/faleconosco.html" class="nav-link text-gray-700 font-medium hover:text-blue-600 transition">Fale Conosco</a>
+                <a href="pages/noticias.html" class="nav-link text-gray-700 font-medium hover:text-blue-600 transition">Notícias</a>
             </nav>
             
             <button class="md:hidden text-gray-700 focus:outline-none">
@@ -41,7 +43,7 @@
 <section class="relative min-h-screen overflow-hidden flex items-center">
     <!-- Vídeo de fundo -->
     <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
-        <source src="../PI.OFC/assets/video/Vídeo_de_Cachoeira_Gerado.mp4" type="video/mp4">
+        <source src="video/Vídeo_de_Cachoeira_Gerado.mp4" type="video/mp4">
     </video>
 
     <!-- Overlay para escurecer o vídeo -->
@@ -137,9 +139,18 @@
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto">Nossa equipe multidisciplinar combina expertise em engenharia, biologia, tecnologia e sustentabilidade.</p>
                 <div class="w-20 h-1 bg-blue-500 mx-auto mt-4"></div>
             </div>
-            
+           
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                <!-- Team Member 1 -->
+                <!-- mentor -->
+            <div class="team-member bg-white rounded-xl shadow-md p-6 text-center transition duration-300">
+                    <div class="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-4 border-blue-100">
+                        <img src="../PI.OFC/assets/img/pessoas/italo.jpg" alt="italo nunes" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">Italo nunes</h3>
+                    <p class="text-blue-600 font-medium mb-2">Mentor</p>
+                    <p class="text-gray-600 text-sm">Mentor e responsavel por indicar e ajudar os demais integrantes do curso com o projeto final.</p>
+                </div>
+                <!-- luiz -->
                 <div class="team-member bg-white rounded-xl shadow-md p-6 text-center transition duration-300">
                     <div class="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-4 border-blue-100">
                         <img src="../PI.OFC/assets/img/pessoas/Luiz Henrique.jpg" alt="Luiz Henrique" class="w-full h-full object-cover">
@@ -149,7 +160,7 @@
                     <p class="text-gray-600 text-sm">Desenvolveu as páginas, trabalhou no banco de dados, idealizou o design geral e exerceu a função de coordenador do grupo.</p>
                 </div>
                 
-                <!-- Team Member 2 -->
+                <!-- muller -->
                 <div class="team-member bg-white rounded-xl shadow-md p-6 text-center transition duration-300">
                     <div class="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-4 border-blue-100">
                         <img src="../PI.OFC/assets/img/pessoas/Caio Müller.jpg" alt="Caio Muller" class="w-full h-full object-cover">
@@ -159,7 +170,7 @@
                     <p class="text-gray-600 text-sm">Trabalhou ajudando na interface do figma, na codificação em HTML e no desenvolvimento do front-end e back-end do site.</p>
                 </div>
                 
-                <!-- Team Member 3 -->
+                <!-- pedro ribeiro -->
                 <div class="team-member bg-white rounded-xl shadow-md p-6 text-center transition duration-300">
                     <div class="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-4 border-blue-100">
                         <img src="../PI.OFC/assets/img/pessoas/Pedro Ribeiro.jpg" alt="Pedro Ribeiro" class="w-full h-full object-cover">
@@ -169,7 +180,7 @@
                     <p class="text-gray-600 text-sm">Trabalhou no banco de dados e contribui para o design das páginas.</p>
                 </div>
                 
-                <!-- Team Member 4 -->
+                <!-- pedro vinicius -->
                 <div class="team-member bg-white rounded-xl shadow-md p-6 text-center transition duration-300">
                     <div class="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-4 border-blue-100">
                         <img src="../PI.OFC/assets/img/pessoas/Pedro Vinícius.jpg" alt="Pedro Vinícius" class="w-full h-full object-cover">
@@ -179,7 +190,7 @@
                     <p class="text-gray-600 text-sm">Desenvolveu e estilizou todas as paginas, trabalhou no banco de dados, colaborou com o design geral.</p>
                 </div>
                 
-                <!-- Team Member 5 -->
+                <!-- marcos -->
                 <div class="team-member bg-white rounded-xl shadow-md p-6 text-center transition duration-300">
                     <div class="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-4 border-blue-100">
                         <img src="../PI.OFC/assets/img/pessoas/Marcos Dencker.jpg" alt="Marcos Dencker" class="w-full h-full object-cover">
@@ -189,7 +200,7 @@
                     <p class="text-gray-600 text-sm">Desenvolveu a prototipagem e fez o designer geral.</p>
                 </div>
                 
-                <!-- Team Member 6 -->
+                <!-- caio cesar -->
                 <div class="team-member bg-white rounded-xl shadow-md p-6 text-center transition duration-300">
                     <div class="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-4 border-blue-100">
                         <img src="../PI.OFC/assets/img/pessoas/Caio César.jpg" alt="Caio César" class="w-full h-full object-cover">
@@ -199,7 +210,7 @@
                     <p class="text-gray-600 text-sm">Desenvolveu e estilizou as páginas,Trabalhou com código HTML e colaborou com o design geral.</p>
                 </div>
                 
-                <!-- Team Member 7 -->
+                <!-- airton -->
                 <div class="team-member bg-white rounded-xl shadow-md p-6 text-center transition duration-300">
                     <div class="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-4 border-blue-100">
                         <img src="../PI.OFC/assets/img/pessoas/Airton Samuel.jpg" alt="Airton Samuel" class="w-full h-full object-cover">
@@ -349,7 +360,7 @@
                             <img src="../PI.OFC/assets/img/logos/Twitter.png" alt="">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a href="https://www.instagram.com/" class="w-10 h-10 bg-gray-700 hover:bg-pink-600 rounded-full flex items-center justify-center transition">
+                        <a href="https://www.instagram.com/aqualimpa_ofc/" class="w-10 h-10 bg-gray-700 hover:bg-pink-600 rounded-full flex items-center justify-center transition">
                             <img src="../PI.OFC/assets/img/logos/Instagram.png" alt="">
                             <i class="fab fa-instagram"></i>
                         </a>
@@ -366,5 +377,36 @@
             </div>
         </div>
     </footer>
+    
+</body>
+</html>
+
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Importando funções do Firebase SDK via CDN
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
+
+      
+
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyBB_0BNMRMFn3zDp5Yb0GU6OaOqJ619RJI",
+            authDomain: "aqua-limpa.firebaseapp.com",
+            projectId: "aqua-limpa",
+            storageBucket: "aqua-limpa.firebasestorage.app",
+            messagingSenderId: "25269279446",
+            appId: "1:25269279446:web:cceab02dbcd02ef20b4777",
+            measurementId: "G-C9P5R2KPH7"
+        };
+
+        // Inicializando o Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+
+        console.log("Firebase inicializado com sucesso!", app);
+    </script>
 </body>
 </html>
