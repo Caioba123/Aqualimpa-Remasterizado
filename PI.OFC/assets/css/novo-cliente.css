@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(90deg, #e2e2e2, #c9d6ff);
+}
+
+.container {
+  position: relative;
+  width: 850px;
+  max-width: 100%;
+  min-height: 550px;
+  background-color: #fff;
+  border-radius: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+/* FORMULÁRIOS */
+.form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 50px;
+  text-align: center;
+  transition: all 0.6s ease-in-out;
+}
+
+.sign-in-container {
+  left: 0;
+  opacity: 1;
+  z-index: 2;
+}
+
+.sign-up-container {
+  left: 0;
+  transform: translateX(100%);
+  opacity: 0;
+  z-index: 1;
+}
+
+/* Quando o painel ativo é o registro */
+.container.right-panel-active .sign-up-container {
+  transform: translateX(0);
+  opacity: 1;
+  z-index: 5;
+}
+
+.container.right-panel-active .sign-in-container {
+  transform: translateX(-100%);
+  opacity: 0;
+  z-index: 1;
+}
+
+/* OVERLAY */
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: all 0.6s ease-in-out;
+  z-index: 100;
+}
+
+.overlay {
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  color: #fff;
+  position: absolute;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.6s ease-in-out;
+}
+
+.container.right-panel-active .overlay {
+  transform: translateX(50%);
+}
+
+/* PAINÉIS DO OVERLAY */
+.overlay-panel {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+  text-align: center;
+  padding: 0 40px;
+}
+
+.overlay-left {
+  left: 0;
+}
+
+.overlay-right {
+  right: 0;
+}
+
+/* TEXTOS DO OVERLAY */
+.overlay-left h1,
+.overlay-right h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.overlay-left p,
+.overlay-right p {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+/* BOTÕES */
+button {
+  border: none;
+  padding: 10px 30px;
+  border-radius: 20px;
+  background-color: #4267b2;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background-color: #314d87;
+}
+
+button.ghost {
+  background-color: transparent;
+  border: 2px solid #fff;
+}
+
+/* INPUTS */
+.input-box {
+  margin: 10px 0;
+  position: relative;
+  width: 100%;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 12px 40px 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.input-box i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+
+input[type="date"] {
+  padding-left: 42px;
+  font-family: 'Poppins', sans-serif;
+  color: #555;
+}
+
+/* FORMULÁRIO */
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+form h1 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+form a {
+  color: #333;
+  font-size: 14px;
+  margin: 10px 0;
+  text-decoration: none;
+}
+
+.social-icons i {
+  font-size: 20px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.back-button {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    padding: 8px 16px;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.back-button:hover {
+    background: #f5f5f5;
+}
+
+.back-button svg {
+    width: 20px;
+    height: 20px;
+    stroke: #2563eb; /* Azul */
+}
+
+.back-button span {
+    color: #2563eb;
+    font-weight: 500;
+}
