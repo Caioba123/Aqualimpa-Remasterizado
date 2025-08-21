@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="../assets/img/logos/Logo Aqua Limpa.png">
+  <title>Nossos Produtos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../assets/css/produtos.css">
+</head>
+<body>
+  <header>
+    <button class="back-btn" aria-label="Voltar para página anterior" title="Voltar">
+      <a href="../index.html">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+      </a>
+    </button>
+
+    <h1>NOSSOS PRODUTOS</h1>
+  </header>
+
+  <main>
+    <section aria-label="Lista de produtos disponíveis">
+      <div class="products-grid">
+        <!-- Produto 1 -->
+        <article class="product-card">
+          <div class="product-image-container">
+            <img src="../produtos/Sensor de Água.png" alt="Sensor IoT" onerror="this.onerror=null;this.src='https://placehold.co/85x85?text=Indisponível';">
+          </div>
+          <h2 class="product-title">Sensor de Vazamento</h2>
+          <p class="product-description">Monitoramento inteligente para ambientes conectados, com comunicação via rede sem fio e alta eficiência.</p>
+          <div class="product-price">R$ 90,00</div>
+          <a href="formulário.html">
+            <button class="buy-button">Comprar</button>
+          </a>
+        </article>
+
+        <!-- Produto 2 -->
+        <article class="product-card">
+          <div class="product-image-container">
+            <img src="../produtos/Filtrador de Torneira.png" alt="Filtro para Água" onerror="this.onerror=null;this.src='https://placehold.co/85x85?text=Indisponível';">
+          </div>
+          <h2 class="product-title">Filtrador de Água</h2>
+          <p class="product-description">Filtro moderno para eliminação de impurezas, garantindo água potável e sabor puro diretamente da torneira.</p>
+          <div class="product-price">R$ 80,0</div>
+          <a href="formulário.html">
+            <button class="buy-button">Comprar</button>
+          </a>
+        </article>
+
+        <!-- Produto 3 -->
+        <article class="product-card">
+          <div class="product-image-container">
+            <img src="../produtos/Medidor de Qualidade da Água.png" alt="Medidor de pH" onerror="this.onerror=null;this.src='https://placehold.co/85x85?text=Indisponível';">
+          </div>
+          <h2 class="product-title">Medidor de Parametros</h2>
+          <p class="product-description">Equipamento portátil para medir o pH com alta precisão, ideal para uso em campo ou laboratórios.</p>
+          <div class="product-price">R$ 70,00</div>
+          <a href="formulário.html">
+            <button class="buy-button">Comprar</button>
+          </a>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
