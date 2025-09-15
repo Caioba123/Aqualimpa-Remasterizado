@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard de Usuários</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+        }
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .user-row:hover {
+            background-color: rgba(59, 130, 246, 0.05);
+            transition: background-color 0.3s ease;
+        }
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 1000;
+        }
+        .modal-overlay.active {
+            opacity: 1; visibility: visible;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            width: 90%; max-width: 400px;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+        /* Botão voltar */
+        .back-button {
+            position: absolute; top: 20px; left: 20px;
+            background-color: white;
+            border-radius: 50%; padding: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            color: #4f46e5; text-decoration: none;
+            display: flex; align-items: center; justify-content: center;
+            width: 42px; height: 42px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .back-button:hover {
+            background-color: #f0f0f0;
+            transform: scale(1.05);
+        }
+        .back-button svg { width: 24px; height: 24px; }
+        /* Notificações */
+        .notification {
+            position: fixed; top: 20px; right: 20px;
+            background: white; border-radius: 8px;
+            padding: 12px 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-weight: 500;
+            z-index: 2000;
+            opacity: 0; transform: translateY(-20px);
+            transition: all 0.3s ease;
+        }
+        .notification.show {
+            opacity: 1; transform: translateY(0);
+        }
+        .notification.success { border-left: 6px solid #16a34a; }
+        .notification.error { border-left: 6px solid #dc2626; }
+    </style>
+</head>
+<body>
+    <!-- Botão voltar -->
+    <a href="../pages/dashboard.html" class="back-button" aria-label="Voltar ao dashboard">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" 
+             viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" 
+                  stroke-linejoin="round" 
+                  stroke-width="2" 
+                  d="M15 19l-7-7 7-7" />
+        </svg>
+    </a>
+
+    <div class="dashboard-container">
+        <!-- Cabeçalho -->
+        <header class="glass-card p-6 mb-8 fade-in">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1077/1077012.png" 
+                         alt="Ícone usuários" class="w-16 h-16 rounded-full" />
+                    <div>
+                        <h1 class="text-3xl font-bold text-gray-800">Dashboard de Usuários</h1>
+                        <p class="text-gray-600">Gerencie contas de usuários facilmente</p>
+                    </div>
+                </div>
+                <button id="addUserBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg shadow-lg transition duration-300">
+                    <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                    </svg>
+                    Adicionar Usuário
+                </button>
+            </div>
+        </header>
+
+        <!-- Conteúdo principal -->
+        <main class="glass-card p-8 fade-in">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-semibold text-gray-800">Usuários Cadastrados</h2>
+                <span id="userCount" class="text-sm font-medium text-gray-500 px-3 py-1 bg-gray-100 rounded-full">0 usuários</span>
+            </div>
+
+            <!-- Tabela -->
+            <div class="overflow-x-auto">
+                <table id="userTable" class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nome</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nascimento</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <!-- Usuários aparecem aqui -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Mensagem se vazio -->
+            <div id="noUsersMessage" class="text-center py-12 text-gray-500">
+                <svg class="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 48 48">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M34 40h10v-4a6 6 0 00-10.712-3.714M34 40H14m20 0v-4a9.971 9.971 0 00-.712-3.714M14 40H4v-4a6 6 0 0110.712-3.714M14 40v-4c0-1.313.253-2.566.712-3.714m0 0a10.002 10.002 0 019.288 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zm6 30v-4a7 7 0 00-7-7h10a7 7 0 007 7v4z"/>
+                </svg>
+                <p class="text-lg">Nenhum usuário cadastrado ainda.</p>
+                <p class="text-sm">Clique em "Adicionar Usuário" para começar.</p>
+            </div>
+        </main>
+
+        <!-- Modal -->
+        <div id="userModal" class="modal-overlay">
+            <div class="modal-content glass-card">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 id="modalTitle" class="text-xl font-semibold text-gray-800">Adicionar Usuário</h3>
+                    <button id="closeModal" class="text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+                <form id="userForm" class="space-y-4" novalidate>
+                    <input type="hidden" id="userId" />
+                    <div>
+                        <label for="userName" class="block text-sm font-medium">Nome</label>
+                        <input type="text" id="userName" name="userName" class="w-full px-3 py-2 border rounded-md" required />
+                    </div>
+                    <div>
+                        <label for="userDob" class="block text-sm font-medium">Data de Nascimento</label>
+                        <input type="date" id="userDob" name="userDob" class="w-full px-3 py-2 border rounded-md" required />
+                    </div>
+                    <div>
+                        <label for="userEmail" class="block text-sm font-medium">Email</label>
+                        <input type="email" id="userEmail" name="userEmail" class="w-full px-3 py-2 border rounded-md" required />
+                    </div>
+                    <div>
+                        <label for="userPassword" class="block text-sm font-medium">Senha</label>
+                        <input type="password" id="userPassword" name="userPassword" class="w-full px-3 py-2 border rounded-md" required minlength="6" />
+                    </div>
+                    <div class="flex justify-end space-x-3 pt-4">
+                        <button type="button" id="cancelBtn" class="px-4 py-2 bg-gray-100 border rounded-md">Cancelar</button>
+                        <button type="submit" class="px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notificações -->
+    <div id="notificationContainer"></div>
+
+    <script>
+    const userTable = document.querySelector('#userTable tbody');
+    const userForm = document.getElementById('userForm');
+    const userModal = document.getElementById('userModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const addUserBtn = document.getElementById('addUserBtn');
+    const closeModal = document.getElementById('closeModal');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const userCount = document.getElementById('userCount');
+    const noUsersMessage = document.getElementById('noUsersMessage');
+    const notificationContainer = document.getElementById('notificationContainer');
+
+    let users = [];
+    let isEditing = false;
+
+    // Buscar usuários no PHP
+    async function fetchUsers() {
+        try {
+            const response = await fetch("usuarios.php");
+            users = await response.json();
+            renderUsers();
+        } catch (error) {
+            console.error("Erro ao buscar usuários:", error);
+        }
+    }
+    fetchUsers();
+
+    // Renderizar tabela
+    function renderUsers() {
+        userTable.innerHTML = '';
+        userCount.textContent = `${users.length} usuário${users.length !== 1 ? 's' : ''}`;
+
+        if (users.length === 0) {
+            userTable.parentElement.style.display = 'none';
+            noUsersMessage.style.display = 'block';
+            return;
+        }
+        userTable.parentElement.style.display = '';
+        noUsersMessage.style.display = 'none';
+
+        users.forEach(user => {
+            const row = document.createElement('tr');
+            row.className = 'user-row';
+            const dobFormatted = new Date(user.dob).toLocaleDateString('pt-BR');
+
+            row.innerHTML = `
+                <td class="px-6 py-4">${user.name}</td>
+                <td class="px-6 py-4">${dobFormatted}</td>
+                <td class="px-6 py-4">${user.email}</td>
+                <td class="px-6 py-4">
+                    <button onclick="editUser(${user.id})" class="text-indigo-600 hover:text-indigo-900 mr-3">Editar</button>
+                    <button onclick="deleteUser(${user.id})" class="text-red-600 hover:text-red-900">Excluir</button>
+                </td>
+            `;
+            userTable.appendChild(row);
+        });
+    }
+
+    // Abrir modal adicionar
+    addUserBtn.addEventListener('click', () => {
+        isEditing = false;
+        modalTitle.textContent = 'Adicionar Usuário';
+        userForm.reset();
+        document.getElementById('userId').value = "";
+        userModal.classList.add('active');
+        userForm.userName.focus();
+    });
+    closeModal.addEventListener('click', closeModalFunc);
+    cancelBtn.addEventListener('click', closeModalFunc);
+
+    function closeModalFunc() {
+        userModal.classList.remove('active');
+        userForm.reset();
+    }
+
+    // Enviar formulário
+    userForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const id = document.getElementById('userId').value;
+        const name = userForm.userName.value.trim();
+        const dob = userForm.userDob.value;
+        const email = userForm.userEmail.value.trim();
+        const password = userForm.userPassword.value;
+
+        if (!name || !dob || !email || !password) {
+            showNotification('Preencha todos os campos.', 'error');
+            return;
+        }
+        if (password.length < 6) {
+            showNotification('A senha deve ter pelo menos 6 caracteres.', 'error');
+            return;
+        }
+
+        try {
+            const formData = new FormData();
+            formData.append("id", id);
+            formData.append("name", name);
+            formData.append("dob", dob);
+            formData.append("email", email);
+            formData.append("password", password);
+            formData.append("action", isEditing ? "update" : "create");
+
+            await fetch("usuarios.php", { method: "POST", body: formData });
+            showNotification(isEditing ? 'Usuário atualizado!' : 'Usuário criado!', 'success');
+            fetchUsers();
+            closeModalFunc();
+        } catch (error) {
+            console.error("Erro ao salvar usuário:", error);
+        }
+    });
+
+    // Editar usuário
+    window.editUser = function (id) {
+        const user = users.find(u => u.id == id);
+        if (user) {
+            isEditing = true;
+            modalTitle.textContent = 'Editar Usuário';
+            document.getElementById('userId').value = user.id;
+            userForm.userName.value = user.name;
+            userForm.userDob.value = user.dob;
+            userForm.userEmail.value = user.email;
+            userForm.userPassword.value = user.password;
+            userModal.classList.add('active');
+            userForm.userName.focus();
+        }
+    }
+
+    // Excluir usuário
+    window.deleteUser = async function (id) {
+        if (confirm('Deseja excluir este usuário?')) {
+            try {
+                const formData = new FormData();
+                formData.append("id", id);
+                formData.append("action", "delete");
+
+                await fetch("usuarios.php", { method: "POST", body: formData });
+                showNotification('Usuário excluído!', 'success');
+                fetchUsers();
+            } catch (error) {
+                console.error("Erro ao excluir usuário:", error);
+            }
+        }
+    }
+
+    // Notificações
+    function showNotification(message, type) {
+        const notif = document.createElement('div');
+        notif.className = `notification ${type}`;
+        notif.textContent = message;
+        notificationContainer.appendChild(notif);
+
+        setTimeout(() => notif.classList.add('show'), 50);
+        setTimeout(() => {
+            notif.classList.remove('show');
+            setTimeout(() => notif.remove(), 300);
+        }, 3000);
+    }
+    </script>
+</body>
+</html>
